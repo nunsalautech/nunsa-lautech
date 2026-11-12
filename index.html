@@ -2,271 +2,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#071b3b">
-  <title>NUNSA LAUTECH | Student Hub</title>
-  <style>
-    :root {
-      --blue: #071b3b;
-      --blue2: #10366b;
-      --gold: #d9a83e;
-      --white: #ffffff;
-      --light: #f4f7fc;
-      --text: #17243a;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: Arial, sans-serif;
-      background: var(--light);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    a { text-decoration: none; }
-    header {
-      background: var(--blue);
-      color: white;
-      padding: 16px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    .brand { font-weight: 800; font-size: 19px; }
-    .brand span { color: var(--gold); }
-    nav { display: flex; gap: 20px; align-items: center; }
-    nav a { color: white; font-size: 14px; }
-    nav a:hover { color: var(--gold); }
-    .menu {
-      display: none;
-      background: none;
-      border: 1px solid #ffffff66;
-      color: white;
-      border-radius: 7px;
-      padding: 7px 12px;
-      font-size: 20px;
-    }
-    .hero {
-      background: linear-gradient(120deg, #071b3b, #17457d);
-      color: white;
-      padding: 90px 7%;
-      min-height: 440px;
-      display: flex;
-      align-items: center;
-    }
-    .hero-content { max-width: 680px; }
-    .eyebrow {
-      color: var(--gold);
-      font-weight: bold;
-      letter-spacing: 2px;
-      font-size: 13px;
-    }
-    h1 { font-size: clamp(38px, 6vw, 64px); line-height: 1.1; margin: 18px 0; }
-    .hero p { max-width: 570px; color: #e1e9f5; font-size: 17px; }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-    .btn {
-      display: inline-block;
-      border-radius: 7px;
-      padding: 12px 20px;
-      font-weight: bold;
-      border: 1px solid var(--gold);
-      background: var(--gold);
-      color: var(--blue);
-    }
-    .btn-outline { background: transparent; color: white; }
-    section { padding: 65px 7%; }
-    .section-title { text-align: center; margin-bottom: 30px; }
-    .section-title h2 { color: var(--blue); font-size: 30px; }
-    .section-title p { color: #69778b; margin-top: 7px; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      border: 1px solid #e6eaf1;
-      box-shadow: 0 5px 20px #10294b0b;
-    }
-    .card h3 { color: var(--blue); margin-bottom: 9px; }
-    .card p { color: #68768a; font-size: 14px; }
-    .card .symbol { font-size: 28px; margin-bottom: 12px; }
-    .about { background: white; }
-    .about-content { max-width: 850px; margin: auto; text-align: center; }
-    .about-content p { color: #647187; }
-    .social { background: var(--blue); color: white; text-align: center; }
-    .social h2 { color: white; }
-    .social p { color: #d6e0ef; }
-    .social-links {
-      display: flex; flex-wrap: wrap; justify-content: center;
-      gap: 12px; margin-top: 25px;
-    }
-    .social-links a {
-      color: white; border: 1px solid #ffffff55;
-      padding: 10px 18px; border-radius: 8px;
-    }
-    .social-links a:hover { background: var(--gold); color: var(--blue); }
-    footer {
-      background: #041329; color: #cbd5e4;
-      padding: 25px 7%; text-align: center; font-size: 13px;
-    }
-    @media(max-width: 760px) {
-      header { flex-wrap: wrap; }
-      .menu { display: block; }
-      nav {
-        display: none; width: 100%;
-        flex-direction: column; align-items: flex-start;
-        padding: 15px 0;
-      }
-      nav.open { display: flex; }
-      .hero { padding: 75px 7%; min-height: 420px; }
-      section { padding: 50px 6%; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071b3b">
+<title>NUNSA LAUTECH | Official Student Hub</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--blue:#071b3b;--blue2:#10366b;--gold:#d9a83e;--light:#f4f7fc;--ink:#17243a;--muted:#68768a}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;background:var(--light);color:var(--ink);line-height:1.6}
+a{text-decoration:none}
+button,input,select{font:inherit}
+header{background:var(--blue);color:white;padding:15px 6%;display:flex;align-items:center;justify-content:space-between;gap:18px;position:sticky;top:0;z-index:20}
+.brand{font-size:20px;font-weight:800;white-space:nowrap}.brand span{color:var(--gold)}
+nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+nav a{color:white;font-size:14px}
+nav a:hover{color:var(--gold)}
+.menu{display:none;background:none;color:white;border:1px solid #ffffff66;padding:7px 12px;border-radius:7px}
+.hero{background:linear-gradient(120deg,#071b3b,#17457d);color:white;padding:90px 7%;min-height:470px;display:flex;align-items:center}
+.hero-inner{max-width:760px}
+.eyebrow{color:var(--gold);font-size:12px;font-weight:bold;letter-spacing:2px}
+h1{font-size:clamp(38px,6vw,66px);line-height:1.1;margin:18px 0}
+.hero p{color:#e1e9f5;max-width:620px;font-size:17px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{border:1px solid var(--gold);background:var(--gold);color:var(--blue);padding:11px 19px;border-radius:7px;font-weight:bold;cursor:pointer;display:inline-block}
+.btn.outline{background:transparent;color:white}
+.btn.dark{background:var(--blue);border-color:var(--blue);color:white}
+.btn.small{padding:8px 13px;font-size:13px}
+section{padding:65px 7%}
+.section-head{text-align:center;margin:0 auto 30px;max-width:700px}
+.section-head h2{font-size:30px;color:var(--blue)}
+.section-head p{color:var(--muted);margin-top:6px}
+.white{background:white}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:white;border:1px solid #e6eaf1;border-radius:12px;padding:23px;box-shadow:0 5px 20px #10294b0b}
+.card h3{color:var(--blue);margin:8px 0}
+.card p{font-size:14px;color:var(--muted)}
+.symbol{font-size:28px}
+.center{max-width:850px;margin:auto;text-align:center}
+.center p{color:var(--muted)}
+.social{background:var(--blue);color:white;text-align:center}
+.social h2{color:white}.social p{color:#d6e0ef}
+.social-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.social-links a{color:white;border:1px solid #ffffff66;padding:10px 18px;border-radius:8px}
+.social-links a:hover{background:var(--gold);color:var(--blue)}
+.auth-area{background:#edf2f9}
+.auth-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:850px;margin:auto}
+.panel{background:white;padding:25px;border-radius:12px;border:1px solid #e1e7f0}
+.panel h3{color:var(--blue);margin-bottom:15px}
+.field{margin:12px 0}
+.field label{display:block;font-size:13px;font-weight:bold;margin-bottom:5px}
+.field input,.field select{width:100%;padding:12px;border:1px solid #ccd5e2;border-radius:7px;background:white;color:var(--ink)}
+.notice{font-size:13px;color:var(--muted);margin-top:10px}
+.status{margin-top:12px;font-size:14px;min-height:22px}
+.dashboard{display:none;background:#f4f7fc}
+.dash-top{background:var(--blue);color:white;padding:25px;border-radius:12px;margin-bottom:22px}
+.dash-top h2{font-size:26px}.dash-top p{color:#d8e3f2}
+.dash-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.dash-links a{background:white;color:var(--blue);padding:8px 13px;border-radius:7px;font-size:13px}
+.hidden{display:none!important}
+footer{background:#041329;color:#cbd5e4;text-align:center;padding:25px 7%;font-size:13px}
+footer a{color:var(--gold)}
+@media(max-width:760px){
+ header{flex-wrap:wrap}.menu{display:block}
+ nav{display:none;width:100%;flex-direction:column;align-items:flex-start;padding:12px 0}
+ nav.open{display:flex}
+ .hero{padding:70px 7%;min-height:420px}
+ section{padding:50px 6%}
+}
+</style>
 </head>
 <body>
 
 <header>
-  <div class="brand">NUNSA <span>LAUTECH</span></div>
-  <button class="menu" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+  <a class="brand" href="#home" style="color:white">NUNSA <span>LAUTECH</span></a>
+  <button class="menu" onclick="toggleMenu()" aria-label="Open navigation">☰</button>
   <nav id="navigation">
     <a href="#home" onclick="closeMenu()">Home</a>
     <a href="#about" onclick="closeMenu()">About</a>
     <a href="#hub" onclick="closeMenu()">Student Hub</a>
+    <a href="#news" onclick="closeMenu()">News</a>
     <a href="#events" onclick="closeMenu()">Events</a>
-    <a href="#social" onclick="closeMenu()">Connect</a>
-    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <a href="#executives" onclick="closeMenu()">Executives</a>
+    <a href="#connect" onclick="closeMenu()">Connect</a>
+    <a href="#account" onclick="closeMenu()">Student Login</a>
   </nav>
 </header>
 
 <main>
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <div class="eyebrow">NIGERIAN UNIVERSITY NURSING STUDENTS' ASSOCIATION</div>
-      <h1>One community.<br>One purpose.<br><span style="color:#e5b84e">One NUNSA.</span></h1>
-      <p>
-        Welcome to the official NUNSA LAUTECH Student Hub.
-        Your home for student information, academic resources,
-        association updates and campus activities.
-      </p>
-      <div class="actions">
-        <a class="btn" href="#hub">Explore Student Hub</a>
-        <a class="btn btn-outline" href="#about">Discover NUNSA</a>
-      </div>
-    </div>
-  </section>
+<section class="hero" id="home">
+ <div class="hero-inner">
+  <div class="eyebrow">NIGERIAN UNIVERSITY NURSING STUDENTS' ASSOCIATION</div>
+  <h1>One community.<br>One purpose.<br><span style="color:#e5b84e">One NUNSA.</span></h1>
+  <p>Welcome to the official NUNSA LAUTECH Student Hub — your home for student information, academic resources, association updates and campus activities.</p>
+  <div class="actions">
+   <a class="btn" href="#account">Enter Student Hub</a>
+   <a class="btn outline" href="#about">Discover NUNSA</a>
+  </div>
+ </div>
+</section>
 
-  <section class="about" id="about">
-    <div class="about-content">
-      <div class="section-title">
-        <h2>About NUNSA LAUTECH</h2>
-        <p>Building community, leadership and excellence in nursing.</p>
-      </div>
-      <p>
-        NUNSA LAUTECH brings nursing students together through
-        academic development, professional growth, advocacy,
-        sports, welfare and meaningful campus experiences.
-        This platform keeps our community connected and informed.
-      </p>
-    </div>
-  </section>
+<section class="white" id="about">
+ <div class="center">
+  <div class="section-head"><h2>About NUNSA LAUTECH</h2><p>Building community, leadership and excellence in nursing.</p></div>
+  <p>NUNSA LAUTECH brings nursing students together through academic development, professional growth, advocacy, sports, welfare and meaningful campus experiences. This platform keeps our community connected, informed and involved.</p>
+ </div>
+</section>
 
-  <section id="hub">
-    <div class="section-title">
-      <h2>Your Student Hub</h2>
-      <p>Everything you need, in one place.</p>
-    </div>
-    <div class="grid">
-      <div class="card">
-        <div class="symbol">📚</div>
-        <h3>Academic Resources</h3>
-        <p>Access semester courses, learning resources and academic information.</p>
-      </div>
-      <div class="card">
-        <div class="symbol">🗓️</div>
-        <h3>Timetable</h3>
-        <p>Keep track of your lectures and academic schedule.</p>
-      </div>
-      <div class="card">
-        <div class="symbol">📢</div>
-        <h3>Announcements</h3>
-        <p>Stay informed about important association updates.</p>
-      </div>
-      <div class="card">
-        <div class="symbol">🎟️</div>
-        <h3>Events & Tickets</h3>
-        <p>Discover upcoming events and access event tickets.</p>
-      </div>
-    </div>
-  </section>
+<section id="hub">
+ <div class="section-head"><h2>Your Student Hub</h2><p>Everything you need, in one place.</p></div>
+ <div class="grid">
+  <article class="card"><div class="symbol">📚</div><h3>Academic Resources</h3><p>Find semester courses and academic information in your student space.</p></article>
+  <article class="card"><div class="symbol">🗓️</div><h3>Class Timetable</h3><p>Keep track of lectures and your academic schedule.</p></article>
+  <article class="card"><div class="symbol">📢</div><h3>Announcements</h3><p>Stay informed about important association updates.</p></article>
+  <article class="card"><div class="symbol">🎟️</div><h3>Events & Tickets</h3><p>Discover events and access ticket information.</p></article>
+ </div>
+</section>
 
-  <section class="about" id="events">
-    <div class="section-title">
-      <h2>What's Happening?</h2>
-      <p>Events, news, spotlights and stories from our community.</p>
-    </div>
-    <div class="grid">
-      <div class="card">
-        <h3>Upcoming Events</h3>
-        <p>Find out what's coming up in the NUNSA LAUTECH community.</p>
-      </div>
-      <div class="card">
-        <h3>Student Spotlight</h3>
-        <p>Celebrating the people and achievements that make us proud.</p>
-      </div>
-      <div class="card">
-        <h3>News & Articles</h3>
-        <p>Read updates, stories and useful articles from our association.</p>
-      </div>
-    </div>
-  </section>
+<section class="white" id="news">
+ <div class="section-head"><h2>News & Articles</h2><p>Stories, information and updates from our nursing community.</p></div>
+ <div class="grid">
+  <article class="card"><div class="symbol">📰</div><h3>Association Updates</h3><p>Official news and important information from NUNSA LAUTECH.</p></article>
+  <article class="card"><div class="symbol">✍️</div><h3>Student Articles</h3><p>Read educational articles, features and contributions from students.</p></article>
+  <article class="card"><div class="symbol">🌟</div><h3>Student Spotlight</h3><p>Celebrating the people and achievements that make our community proud.</p></article>
+ </div>
+ <p class="notice" style="text-align:center;margin-top:18px">Published articles and updates will appear here as the admin team adds them.</p>
+</section>
 
-  <section class="social" id="social">
-    <div class="section-title">
-      <h2>Connect With Us</h2>
-      <p>Follow NUNSA LAUTECH and stay connected across our platforms.</p>
-    </div>
-    <div class="social-links">
-      <!-- Replace # with the official account URLs -->
-      <a href="#" target="_blank" rel="noopener">Instagram</a>
-      <a href="#" target="_blank" rel="noopener">TikTok</a>
-      <a href="#" target="_blank" rel="noopener">Facebook</a>
-      <a href="#" target="_blank" rel="noopener">YouTube</a>
-      <a href="#" target="_blank" rel="noopener">X / Twitter</a>
-    </div>
-  </section>
+<section id="events">
+ <div class="section-head"><h2>What's Happening?</h2><p>Be part of the moments that bring our community together.</p></div>
+ <div class="grid">
+  <article class="card"><div class="symbol">📅</div><h3>Upcoming Events</h3><p>Find out what's coming up in the NUNSA LAUTECH community.</p></article>
+  <article class="card"><div class="symbol">🏆</div><h3>Sports & Activities</h3><p>Stay connected with sports, competitions and student activities.</p></article>
+  <article class="card"><div class="symbol">🎫</div><h3>Event Tickets</h3><p>Event ticket information and sales will be available here.</p></article>
+ </div>
+</section>
 
-  <section id="contact">
-    <div class="section-title">
-      <h2>Contact NUNSA LAUTECH</h2>
-      <p>Have a question or an enquiry? We'd love to hear from you.</p>
-    </div>
-    <div class="about-content">
-      <p>Official contact details will be published here.</p>
-    </div>
-  </section>
+<section class="white" id="executives">
+ <div class="section-head"><h2>Meet Your Executives</h2><p>Leadership, service and representation.</p></div>
+ <div class="center"><p>Meet the NUNSA LAUTECH executive team and find official contact information here. Executive profiles will be published by the admin team.</p></div>
+</section>
+
+<section class="social" id="connect">
+ <div class="section-head"><h2>Connect With Us</h2><p>Follow NUNSA LAUTECH and stay connected across our platforms.</p></div>
+ <div class="social-links">
+  <a href="https://www.instagram.com/nunsa_lautech?cplk=aGU4c21uN2p3dTBy&utm_source=qr" target="_blank" rel="noopener">Instagram ↗</a>
+  <a href="https://www.tiktok.com/@nunsalautech" target="_blank" rel="noopener">TikTok ↗</a>
+  <a href="#" aria-disabled="true" onclick="return false">Facebook — coming soon</a>
+  <a href="#" aria-disabled="true" onclick="return false">YouTube — coming soon</a>
+  <a href="#" aria-disabled="true" onclick="return false">X — coming soon</a>
+ </div>
+</section>
+
+<section class="auth-area" id="account">
+ <div class="section-head"><h2>Student Access</h2><p>Create your account or sign in to enter your personal student space.</p></div>
+ <div class="auth-grid" id="authForms">
+  <div class="panel">
+   <h3>Student Registration</h3>
+   <form id="registerForm">
+    <div class="field"><label for="regName">Full name</label><input id="regName" required autocomplete="name" placeholder="Your full name"></div>
+    <div class="field"><label for="regUsername">Username</label><input id="regUsername" required minlength="3" autocomplete="username" placeholder="Choose a username"></div>
+    <div class="field"><label for="regLevel">Level</label><select id="regLevel" required><option value="">Select your level</option><option>100 Level</option><option>200 Level</option><option>300 Level</option><option>400 Level</option><option>500 Level</option></select></div>
+    <div class="field"><label for="regDepartment">Department (optional)</label><input id="regDepartment" placeholder="Your department"></div>
+    <div class="field"><label for="regPassword">Password</label><input id="regPassword" type="password" required minlength="8" autocomplete="new-password" placeholder="At least 8 characters"></div>
+    <div class="field"><label for="regConfirm">Confirm password</label><input id="regConfirm" type="password" required minlength="8" autocomplete="new-password" placeholder="Enter password again"></div>
+    <button class="btn dark" type="submit" style="width:100%">Create Student Account</button>
+   </form>
+   <div class="status" id="registerStatus" role="status"></div>
+  </div>
+
+  <div class="panel">
+   <h3>Student Login</h3>
+   <form id="loginForm">
+    <div class="field"><label for="loginUsername">Username</label><input id="loginUsername" required autocomplete="username" placeholder="Your username"></div>
+    <div class="field"><label for="loginPassword">Password</label><input id="loginPassword" type="password" required autocomplete="current-password" placeholder="Your password"></div>
+    <button class="btn dark" type="submit" style="width:100%">Login to Student Hub</button>
+   </form>
+   <p class="notice">Forgot your password? Contact the NUNSA LAUTECH admin team for account recovery.</p>
+   <div class="status" id="loginStatus" role="status"></div>
+  </div>
+ </div>
+ <div class="dashboard" id="studentDashboard" style="margin-top:25px">
+  <div class="dash-top">
+   <h2 id="welcomeName">Welcome!</h2>
+   <p id="welcomeLevel">Your NUNSA LAUTECH student space</p>
+   <div class="dash-links">
+    <a href="#studentCourses">My Courses</a><a href="#studentTimetable">Timetable</a><a href="#studentUpdates">Announcements</a>
+   </div>
+  </div>
+  <div class="grid">
+   <article class="card" id="studentCourses"><div class="symbol">📚</div><h3>My Courses</h3><p>Your semester courses will be displayed here.</p></article>
+   <article class="card" id="studentTimetable"><div class="symbol">🗓️</div><h3>My Timetable</h3><p>Your class timetable will be displayed here.</p></article>
+   <article class="card" id="studentUpdates"><div class="symbol">📢</div><h3>Announcements</h3><p>Student announcements will appear here.</p></article>
+   <article class="card"><div class="symbol">🎟️</div><h3>My Tickets</h3><p>Your event tickets will be available here.</p></article>
+  </div>
+  <p id="adminMessage" class="notice hidden">Administrator account detected. Admin management tools will be connected here.</p>
+  <button class="btn dark" id="logoutButton" style="margin-top:20px">Log Out</button>
+ </div>
+</section>
 </main>
 
 <footer>
-  <p>© <span id="year"></span> NUNSA LAUTECH. All rights reserved.</p>
-  <p>Built for the NUNSA LAUTECH community.</p>
+ <p>© <span id="year"></span> NUNSA LAUTECH. All rights reserved.</p>
+ <p>Built for the NUNSA LAUTECH community.</p>
 </footer>
 
 <script>
-  function toggleMenu() {
-    document.getElementById("navigation").classList.toggle("open");
-  }
-  function closeMenu() {
-    document.getElementById("navigation").classList.remove("open");
-  }
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+const SUPABASE_URL = "PASTE_YOUR_SUPABASE_PROJECT_URL";
+const SUPABASE_KEY = "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY";
 
+let supabaseClient = null;
+
+function toggleMenu(){document.getElementById("navigation").classList.toggle("open")}
+function closeMenu(){document.getElementById("navigation").classList.remove("open")}
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function showStatus(id,message,isError=false){
+ const el=document.getElementById(id);
+ el.textContent=message;
+ el.style.color=isError?"#b42318":"#176b42";
+}
+function getClient(){
+ if(!window.supabase){throw new Error("Supabase library did not load. Refresh the page and try again.")}
+ if(SUPABASE_URL.startsWith("PASTE_")||SUPABASE_KEY.startsWith("PASTE_")){
+  throw new Error("Supabase connection details have not been added yet.");
+ }
+ if(!supabaseClient){supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY)}
+ return supabaseClient;
+}
+function usernameEmail(username){
+ return username.trim().toLowerCase()+"@students.nunsa-lautech.invalid";
+}
+async function showStudent(user){
+ const client=getClient();
+ let profile={};
+ const {data}=await client.from("profiles").select("student_name,username,level,department").eq("id",user.id).maybeSingle();
+ if(data)profile=data;
+ const name=profile.student_name||user.user_metadata?.student_name||"NUNSA Student";
+ const level=profile.level||user.user_metadata?.level||"Student";
+ document.getElementById("welcomeName").textContent="Welcome, "+name+"!";
+ document.getElementById("welcomeLevel").textContent=level+(profile.department?" • "+profile.department:"");
+ document.getElementById("authForms").classList.add("hidden");
+ document.getElementById("studentDashboard").style.display="block";
+ const {data:roles}=await client.from("user_roles").select("role").eq("user_id",user.id);
+ if(roles?.some(r=>["admin","super_admin"].includes(r.role))){
+  document.getElementById("adminMessage").classList.remove("hidden");
+ }
+}
+document.getElementById("registerForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ showStatus("registerStatus","Creating your account…");
+ try{
+  const client=getClient();
+  const name=document.getElementById("regName").value.trim();
+  const username=document.getElementById("regUsername").value.trim().toLowerCase();
+  const level=document.getElementById("regLevel").value;
+  const department=document.getElementById("regDepartment").value.trim();
+  const password=document.getElementById("regPassword").value;
+  const confirm=document.getElementById("regConfirm").value;
+  if(!/^[a-z0-9_]{3,24}$/.test(username))throw new Error("Use 3–24 characters for your username: letters, numbers or underscores only.");
+  if(password!==confirm)throw new Error("Your passwords do not match.");
+  const {data,error}=await client.auth.signUp({
+   email:usernameEmail(username),
+   password,
+   options:{data:{student_name:name,username,level,department}}
+  });
+  if(error)throw error;
+  if(data.session&&data.user){await showStudent(data.user);showStatus("registerStatus","Account created successfully.")}
+  else{showStatus("registerStatus","Registration received. If email confirmation is enabled, this username-only setup needs an administrator to complete account activation.")}
+ }catch(err){showStatus("registerStatus",err.message||"Registration failed.",true)}
+});
+document.getElementById("loginForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ showStatus("loginStatus","Signing you in…");
+ try{
+  const client=getClient();
+  const username=document.getElementById("loginUsername").value.trim().toLowerCase();
+  const password=document.getElementById("loginPassword").value;
+  const {data,error}=await client.auth.signInWithPassword({email:usernameEmail(username),password});
+  if(error)throw error;
+  await showStudent(data.user);
+  showStatus("loginStatus","Login successful.");
+ }catch(err){showStatus("loginStatus",err.message||"Login failed.",true)}
+});
+document.getElementById("logoutButton").addEventListener("click",async()=>{
+ try{
+  const client=getClient();
+  await client.auth.signOut();
+  document.getElementById("studentDashboard").style.display="none";
+  document.getElementById("authForms").classList.remove("hidden");
+  document.getElementById("adminMessage").classList.add("hidden");
+  document.getElementById("loginForm").reset();
+  document.getElementById("loginStatus").textContent="You have been logged out.";
+  document.getElementById("account").scrollIntoView({behavior:"smooth"});
+ }catch(err){alert(err.message)}
+});
+</script>
 </body>
 </html>
