@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071b3b">
+  <title>NUNSA LAUTECH | Student Hub</title>
+  <style>
+    :root {
+      --blue: #071b3b;
+      --blue2: #10366b;
+      --gold: #d9a83e;
+      --white: #ffffff;
+      --light: #f4f7fc;
+      --text: #17243a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { text-decoration: none; }
+    header {
+      background: var(--blue);
+      color: white;
+      padding: 16px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .brand { font-weight: 800; font-size: 19px; }
+    .brand span { color: var(--gold); }
+    nav { display: flex; gap: 20px; align-items: center; }
+    nav a { color: white; font-size: 14px; }
+    nav a:hover { color: var(--gold); }
+    .menu {
+      display: none;
+      background: none;
+      border: 1px solid #ffffff66;
+      color: white;
+      border-radius: 7px;
+      padding: 7px 12px;
+      font-size: 20px;
+    }
+    .hero {
+      background: linear-gradient(120deg, #071b3b, #17457d);
+      color: white;
+      padding: 90px 7%;
+      min-height: 440px;
+      display: flex;
+      align-items: center;
+    }
+    .hero-content { max-width: 680px; }
+    .eyebrow {
+      color: var(--gold);
+      font-weight: bold;
+      letter-spacing: 2px;
+      font-size: 13px;
+    }
+    h1 { font-size: clamp(38px, 6vw, 64px); line-height: 1.1; margin: 18px 0; }
+    .hero p { max-width: 570px; color: #e1e9f5; font-size: 17px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .btn {
+      display: inline-block;
+      border-radius: 7px;
+      padding: 12px 20px;
+      font-weight: bold;
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      color: var(--blue);
+    }
+    .btn-outline { background: transparent; color: white; }
+    section { padding: 65px 7%; }
+    .section-title { text-align: center; margin-bottom: 30px; }
+    .section-title h2 { color: var(--blue); font-size: 30px; }
+    .section-title p { color: #69778b; margin-top: 7px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid #e6eaf1;
+      box-shadow: 0 5px 20px #10294b0b;
+    }
+    .card h3 { color: var(--blue); margin-bottom: 9px; }
+    .card p { color: #68768a; font-size: 14px; }
+    .card .symbol { font-size: 28px; margin-bottom: 12px; }
+    .about { background: white; }
+    .about-content { max-width: 850px; margin: auto; text-align: center; }
+    .about-content p { color: #647187; }
+    .social { background: var(--blue); color: white; text-align: center; }
+    .social h2 { color: white; }
+    .social p { color: #d6e0ef; }
+    .social-links {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 12px; margin-top: 25px;
+    }
+    .social-links a {
+      color: white; border: 1px solid #ffffff55;
+      padding: 10px 18px; border-radius: 8px;
+    }
+    .social-links a:hover { background: var(--gold); color: var(--blue); }
+    footer {
+      background: #041329; color: #cbd5e4;
+      padding: 25px 7%; text-align: center; font-size: 13px;
+    }
+    @media(max-width: 760px) {
+      header { flex-wrap: wrap; }
+      .menu { display: block; }
+      nav {
+        display: none; width: 100%;
+        flex-direction: column; align-items: flex-start;
+        padding: 15px 0;
+      }
+      nav.open { display: flex; }
+      .hero { padding: 75px 7%; min-height: 420px; }
+      section { padding: 50px 6%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="brand">NUNSA <span>LAUTECH</span></div>
+  <button class="menu" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+  <nav id="navigation">
+    <a href="#home" onclick="closeMenu()">Home</a>
+    <a href="#about" onclick="closeMenu()">About</a>
+    <a href="#hub" onclick="closeMenu()">Student Hub</a>
+    <a href="#events" onclick="closeMenu()">Events</a>
+    <a href="#social" onclick="closeMenu()">Connect</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="eyebrow">NIGERIAN UNIVERSITY NURSING STUDENTS' ASSOCIATION</div>
+      <h1>One community.<br>One purpose.<br><span style="color:#e5b84e">One NUNSA.</span></h1>
+      <p>
+        Welcome to the official NUNSA LAUTECH Student Hub.
+        Your home for student information, academic resources,
+        association updates and campus activities.
+      </p>
+      <div class="actions">
+        <a class="btn" href="#hub">Explore Student Hub</a>
+        <a class="btn btn-outline" href="#about">Discover NUNSA</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-content">
+      <div class="section-title">
+        <h2>About NUNSA LAUTECH</h2>
+        <p>Building community, leadership and excellence in nursing.</p>
+      </div>
+      <p>
+        NUNSA LAUTECH brings nursing students together through
+        academic development, professional growth, advocacy,
+        sports, welfare and meaningful campus experiences.
+        This platform keeps our community connected and informed.
+      </p>
+    </div>
+  </section>
+
+  <section id="hub">
+    <div class="section-title">
+      <h2>Your Student Hub</h2>
+      <p>Everything you need, in one place.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="symbol">📚</div>
+        <h3>Academic Resources</h3>
+        <p>Access semester courses, learning resources and academic information.</p>
+      </div>
+      <div class="card">
+        <div class="symbol">🗓️</div>
+        <h3>Timetable</h3>
+        <p>Keep track of your lectures and academic schedule.</p>
+      </div>
+      <div class="card">
+        <div class="symbol">📢</div>
+        <h3>Announcements</h3>
+        <p>Stay informed about important association updates.</p>
+      </div>
+      <div class="card">
+        <div class="symbol">🎟️</div>
+        <h3>Events & Tickets</h3>
+        <p>Discover upcoming events and access event tickets.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="events">
+    <div class="section-title">
+      <h2>What's Happening?</h2>
+      <p>Events, news, spotlights and stories from our community.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>Upcoming Events</h3>
+        <p>Find out what's coming up in the NUNSA LAUTECH community.</p>
+      </div>
+      <div class="card">
+        <h3>Student Spotlight</h3>
+        <p>Celebrating the people and achievements that make us proud.</p>
+      </div>
+      <div class="card">
+        <h3>News & Articles</h3>
+        <p>Read updates, stories and useful articles from our association.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="social" id="social">
+    <div class="section-title">
+      <h2>Connect With Us</h2>
+      <p>Follow NUNSA LAUTECH and stay connected across our platforms.</p>
+    </div>
+    <div class="social-links">
+      <!-- Replace # with the official account URLs -->
+      <a href="#" target="_blank" rel="noopener">Instagram</a>
+      <a href="#" target="_blank" rel="noopener">TikTok</a>
+      <a href="#" target="_blank" rel="noopener">Facebook</a>
+      <a href="#" target="_blank" rel="noopener">YouTube</a>
+      <a href="#" target="_blank" rel="noopener">X / Twitter</a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-title">
+      <h2>Contact NUNSA LAUTECH</h2>
+      <p>Have a question or an enquiry? We'd love to hear from you.</p>
+    </div>
+    <div class="about-content">
+      <p>Official contact details will be published here.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> NUNSA LAUTECH. All rights reserved.</p>
+  <p>Built for the NUNSA LAUTECH community.</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById("navigation").classList.toggle("open");
+  }
+  function closeMenu() {
+    document.getElementById("navigation").classList.remove("open");
+  }
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
